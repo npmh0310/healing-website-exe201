@@ -11,6 +11,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import { AuthContextProvider } from "./context/AuthContext";
 
 function App() {
   return (
@@ -27,36 +28,26 @@ function App() {
       />
 
       <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+        <AuthContextProvider>
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
 
-          <Route path="/" element={<MainLayout />}>
-            {routes.map((route, index) =>
-              route.index ? (
-                <Route
-                  index
-                  key={index}
-                  element={
-                    <PageWrapper state={route.state}>
-                      {route.element}
-                    </PageWrapper>
-                  }
-                />
-              ) : (
-                <Route
-                  path={route.path}
-                  key={index}
-                  element={
-                    <PageWrapper state={route.state}>
-                      {route.element}
-                    </PageWrapper>
-                  }
-                />
-              )
-            )}
-          </Route>
-        </Routes>
+            <Route path="/" element={<MainLayout />}>
+              {routes.map((route, index) =>
+                route.index ? (
+                  <Route index key={index} element={route.element} />
+                ) : (
+                  <Route
+                    path={route.path}
+                    key={index}
+                    element={route.element}
+                  />
+                )
+              )}
+            </Route>
+          </Routes>
+        </AuthContextProvider>
       </BrowserRouter>
     </>
   );
