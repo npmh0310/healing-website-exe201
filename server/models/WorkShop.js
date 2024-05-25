@@ -1,22 +1,26 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const workshopSchema = new Schema({
-  name: String,
-  description: {
-    type: String,
-    unique: true
+const workshopSchema = new Schema(
+  {
+    name: { type: String, required: true },
+    description: { type: String, required: true },
+    image: { type: String },
+    ticketQuantity: { type: Number, required: true },
+    openDate: { type: Date, required: true },
+    timeStart: { type: Date, required: true },
+    timeEnd: { type: Date, required: true },
+    location: { type: String, required: true },
+    speakerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Speaker",
+      required: true,
+    },
+    price: { type: Number, required: true },
+    ticketSellQuantity: { type: Number, default: 0 },
   },
-  image: String,
-  ticketQuantity: Number,
-  openDate: Date,
-  timeStart: Date,
-  timeEnd: Date,
-  location: String,
-  speakerId: Schema.Types.ObjectId,
-  price: Number,
-  ticketSellQuantity: Number
-}, { timestamps: true });
+  { timestamps: true }
+);
 
-const WorkShop = mongoose.model('WorkShop', workshopSchema);
+const WorkShop = mongoose.model("WorkShop", workshopSchema);
 module.exports = WorkShop;

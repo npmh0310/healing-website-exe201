@@ -4,10 +4,17 @@ var mongoose = require("mongoose");
 var cors = require("cors");
 var cookieParser = require("cookie-parser");
 var workshopRoute = require("./routes/workshop");
+var userRoute = require("./routes/user");
+var authRoute = require("./routes/auth");
+var speakerRoute = require("./routes/speaker");
 
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
+const corsOptions = {
+  origin: true,
+  credentials: true,
+};
 
 //database connection
 mongoose.set("strictQuery", false);
@@ -31,9 +38,13 @@ const connect = async () => {
 
 /// middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser());
-app.use("/workshop", workshopRoute);
+
+app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/workshops", workshopRoute);
+app.use("/api/v1/users", userRoute);
+app.use("/api/v1/speaker", speakerRoute);
 
 app.listen(port, () => {
   connect();

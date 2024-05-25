@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const transactionSchema = new Schema(
   {
-    tickets: [{ type: Schema.Types.ObjectId, ref: "Ticket" }],
-    paymentMethod: String,
-    paymentStatus: String,
+    tickets: [{ type: mongoose.Schema.Types.ObjectId, ref: "Ticket" }],
+    paymentMethod: { type: String, required: true },
+    paymentStatus: { type: String, required: true },
   },
   { timestamps: true }
 );
