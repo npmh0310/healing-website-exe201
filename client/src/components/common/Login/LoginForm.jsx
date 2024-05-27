@@ -7,6 +7,9 @@ import "./login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { onLogin } from "../../../fetchData/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { userLoginSuccess } from "../../../redux/features/authSlice";
 
 function LoginForm() {
   const signInData = {
@@ -34,7 +37,37 @@ function LoginForm() {
     buttonLogin: "Log in to your account",
   };
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+
   const [show, setShow] = useState(false);
+  const [credentials, setCredentials] = useState({
+    email: undefined,
+    password: undefined
+  })
+
+  const handleChange = (e) => {
+    setCredentials(prev => ({ ...prev, [e.target.id]: e.target.value }))
+  };
+
+  const handleClick = async (e) => {
+    e.preventDefault()
+    let res = await onLogin(credentials);
+    console.log(res)
+    if (res && res.status === 200) {
+      dispatch(userLoginSuccess({
+        token: res.data.token,
+        role: res.data.role,
+        username: res.data.data.username
+      }));
+      navigate('/')
+    }
+
+  }
+
+  const handleLoginGoogle = () => {
+    window.open("http://localhost:4000/auth/google/callback", "_self")
+  }
 
   return (
     <div className="signin-form w-[524px]  px-12 py-14 mx-auto  bg-white rounded-lg ">
@@ -64,10 +97,11 @@ function LoginForm() {
           </div>
           <input
             className="bg-gray-50 border h-12 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus hover:bg-slate-200:border-primary-600 block w-full p-2.5"
-            name="username"
+            name="email"
             type="text"
             placeholder={signInData.userName.placeholder}
-            id="username"
+            id="email"
+            onChange={handleChange}
           />
         </div>
         <div>
@@ -89,8 +123,9 @@ function LoginForm() {
             name="password"
             placeholder={signInData.password.placeholder}
             id="password"
+            onChange={handleChange}
             class="bg-gray-50 border h-12 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-            required=""
+            required
           />
         </div>
         <div className="flex flex-row justify-between items-center h-6">
@@ -99,7 +134,9 @@ function LoginForm() {
           <hr className="w-[50%]"></hr>
         </div>
         <div className="flex flex-col justify-center w-full gap-y-3 xl:flex-col items-center xl:gap-x-4">
-          <button className="text-center border border-gray-300   w-full py-3 px-3 rounded-full hover:bg-slate-200 flex justify-center items-center">
+          <button
+            onClick={handleLoginGoogle}
+            className="text-center border border-gray-300   w-full py-3 px-3 rounded-full hover:bg-slate-200 flex justify-center items-center">
             <img src={IconGoolge} className="w-6 mx-2" alt="" />
             <p className="text-[13px]"> Sign in with Google</p>
           </button>
@@ -137,7 +174,9 @@ function LoginForm() {
           </a>
         </div>
         <div className="button-login text-center ">
-          <button className="btnLogin border hover:bg-[#03ecbe] text-white bg-primary transition  transform hover:scale-105 ]">
+          <button
+            onClick={handleClick}
+            className="btnLogin border hover:bg-[#03ecbe] text-white bg-primary transition  transform hover:scale-105 ]">
             {signInData.buttonLogin}
           </button>
         </div>

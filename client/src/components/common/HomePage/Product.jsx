@@ -1,7 +1,18 @@
-import React from "react";
-import productList from "../../../configs/product.configs";
+import React, { useEffect, useState } from "react";
+// import productList from "../../../configs/product.configs";
+import { getWorkshop } from "../../../fetchData/workshop";
 
 function Product() {
+
+  const [productList, setProductList] = useState([])
+  console.log(productList)
+
+  useEffect(() => {
+    getWorkshop()
+      .then(res => setProductList(res.data.data))
+
+  }, [])
+
   return (
     <div className="flex flex-col ">
       <div className="text-center uppercase my-7">
@@ -14,7 +25,7 @@ function Product() {
 
       <div className="container mt-4">
         <div className="grid justify-items-center grid-cols-1 gap-y-10 sm:grid-cols-2  lg:grid-cols-3 ">
-          {productList.product.map((data, index) => {
+          {productList?.map((data, index) => {
             return (
               <div
                 key={index}
@@ -23,19 +34,19 @@ function Product() {
                 <div className="rounded-t-lg ">
                   <img
                     class="object-cover rounded-t-lg w-full h-[200px]"
-                    src={data.image.type}
+                    src={data.image}
                     alt=""
                   />
                 </div>
                 <div className="m-5">
                   <h1 className="text-primary text-lg font-semibold">
-                    {data.title}
+                    {data.name}
                   </h1>
-                  <p className="text-gray-500 text-[14px]">{data.subtitle}</p>
+                  <p className="text-gray-500 text-[14px]">{data.location}</p>
                   <div className="mt-2">
-                    <div className="text-[#f05f4d]">{data.cost}đ</div>
+                    <div className="text-[#f05f4d]">321321đ</div>
                     <div className="text-[15px] text-grey line-through">
-                      {data.oldCost}
+                      {data.ticketQuantity}
                     </div>
                   </div>
                 </div>

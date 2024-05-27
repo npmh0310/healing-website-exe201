@@ -2,9 +2,15 @@ import React, { useEffect, useState } from "react";
 
 import "../components/common/Login/login.css";
 import LoginForm from "../components/common/Login/LoginForm";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../components/common/Logo";
+import { useSelector } from "react-redux";
 function LoginPage() {
+  const navigate = useNavigate()
+  const isLogin = useSelector((state) => state.isLogin)
+  if (isLogin) {
+    navigate('/')
+  }
   const [displayText, setDisplayText] = useState("");
   const name =
     '"Healing Minds: Embark on a Transformative Journey to Inner Peace with Greenteenage"';
@@ -36,7 +42,7 @@ function LoginPage() {
             <p className="text-2xl font-medium min-h-8">{displayText}</p>
             <div>
               <span className="font-semibold uppercase text-second font-logoTitle text-3xl ">
-               - Green
+                - Green
               </span>
               <span className="font-semibold uppercase text-primary font-logoTitle text-3xl ">
                 TeenAge -
