@@ -7,10 +7,11 @@ import IconFacebook from "../assets/icons8-facebook.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { onRegister } from "../fetchData/auth";
 
 function RegisterForm() {
   const signUpData = {
-  
+
     name: "Sign Up",
     title: "Welcome Back To Brainity",
     subtitle: "Already have an account?",
@@ -50,6 +51,28 @@ function RegisterForm() {
   };
   const [show, setShow] = useState(false);
 
+  const [credentials, setCredentials] = useState({
+    username: undefined,
+    email: undefined,
+    password: undefined
+  })
+
+  const navigate = useNavigate();
+
+  const handleChange = e => {
+    setCredentials(prev => ({ ...prev, [e.target.id]: e.target.value }))
+  };
+
+  const handleClick = async e => {
+    e.preventDefault()
+
+    let res = await onRegister(credentials);
+    console.log(res && res.status === 200)
+    if (res) {
+      navigate('/login')
+    }
+  }
+
   return (
     <div className="flex w-full  relative bg-white">
       <div>
@@ -69,7 +92,7 @@ function RegisterForm() {
         <form
           action=""
           className="space-y-6 md:space-y-7"
-   
+
         >
           <div className="flex flex-col gap-y-7">
             <div className="">
@@ -93,7 +116,7 @@ function RegisterForm() {
                 type="text"
                 placeholder={signUpData.userName.placeholder}
                 id="username"
-             
+                onChange={handleChange}
               />
             </div>
             <div className="">
@@ -106,7 +129,7 @@ function RegisterForm() {
                 type="text"
                 name="email"
                 id="email"
-              
+                onChange={handleChange}
                 placeholder={signUpData.email.placeholder}
                 class="bg-gray-50 border h-12 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                 required=""
@@ -129,7 +152,7 @@ function RegisterForm() {
               <input
                 type={`${show ? "text" : "password"}`}
                 id="password"
-              
+                onChange={handleChange}
                 name="password"
                 placeholder={signUpData.password.placeholder}
                 class="bg-gray-50 border h-12 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
@@ -148,7 +171,7 @@ function RegisterForm() {
           <div className="button-login text-center ">
             <button
               className="btnLogin border hover:bg-[#03ecbe] text-white bg-primary transition  transform hover:scale-105 ]"
-            
+              onClick={handleClick}
             >
               {signUpData.buttonLogin}
             </button>

@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainLayout from "./components/layout/MainLayout";
@@ -12,8 +12,29 @@ import "swiper/css/pagination";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { AuthContextProvider } from "./context/AuthContext";
+import { useEffect } from "react";
+import { getProfile } from "./fetchData/auth";
+import { userLoginSuccess } from "./redux/features/authSlice";
 
 function App() {
+
+  const dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.auth.isLogin)
+  console.log(isLogin)
+
+  useEffect(() => {
+    if (!isLogin) {
+      getProfile()
+        .then(response => {
+          console.log(response.data);
+          dispatch(userLoginSuccess(response.data.data))// Lấy dữ liệu từ response
+        })
+        .catch(error => {
+          console.error("Error fetching profile data", error);
+        });
+    }
+  }, [isLogin, dispatch]);
+
   return (
     <>
       {/* config toastify */}

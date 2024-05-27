@@ -2,6 +2,26 @@ var User = require("../models/User");
 var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 
+const profile = async (req, res) => {
+
+  const id = req.user.id
+
+  try {
+    const getProfile = await User.findById(id);
+
+    res.status(200).json({
+      success: true,
+      message: "Successfully get profile",
+      data: getProfile,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to get profile. Try again",
+    });
+  }
+};
+
 const register = async (req, res) => {
   try {
     //hashing password
@@ -35,7 +55,7 @@ const login = async (req, res) => {
     const user = await User.findOne({ email });
     // check user exist
     if (!user) {
-      return res.status(404).json({
+      return res.status(500).json({
         success: false,
         message: "User not found",
       });
@@ -52,7 +72,7 @@ const login = async (req, res) => {
         message: "Incorrect email or password",
       });
     }
-    const { password, role, ...rest } = user._doc; // send to client (trwf password vs role)
+    const { password, role, username, ...rest } = user._doc; // send to client (trwf password vs role)
 
     const token = jwt.sign(
       { id: user.id, role: user.role },
@@ -63,7 +83,6 @@ const login = async (req, res) => {
     // set token in cookies
     res
       .cookie("accessToken", token, {
-        httpOnly: true,
         expires: token.expiresIn,
       })
       .status(200)
@@ -82,7 +101,11 @@ const login = async (req, res) => {
     });
   }
 };
+
+
+
 module.exports = {
   register,
   login,
+  profile,
 };
