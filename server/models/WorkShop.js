@@ -18,6 +18,7 @@ const workshopSchema = new Schema(
     },
     price: { type: Number, required: true },
     ticketSellQuantity: { type: Number, default: 0 },
+    ticketSale: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

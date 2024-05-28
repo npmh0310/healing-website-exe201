@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "../Logo";
 import { TfiPulse } from "react-icons/tfi";
+import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <section className=" lg:bg-center h-[90vh] flex ">
@@ -18,9 +19,11 @@ const Hero = () => {
               Nourish Your Soul: Embrace Art's Healing Power, Relieve Stress,
               and Rediscover Inner Harmony
             </h2>
-            <button className="bg-primary hover:bg-accent-1 px-[36px] py-[18px] mt-[10px] hover:transform-[scale3d(1.05,1.05,1.05)] text-xl font-semibold text-white rounded-[32px]  backdrop-blur-md transition  transform hover:scale-105">
-              Buy Now
-            </button>
+            <Link to={"/workshop-detail"}>
+              <button className="bg-primary hover:bg-accent-1 px-[36px] py-[18px] mt-[10px] hover:transform-[scale3d(1.05,1.05,1.05)] text-xl font-semibold text-white rounded-[32px]  backdrop-blur-md transition  transform hover:scale-105">
+                Xem chi tiết
+              </button>
+            </Link>
           </div>
           <div className="flex-1 flex justify-center items-center ">
             <span className="relative flex justify-center items-center text-primary">

@@ -12,6 +12,7 @@ import "swiper/css/pagination";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { AuthContextProvider } from "./context/AuthContext";
+import ViewDetailWorkshop from "./pages/ViewDetailWorkshop/ViewDetailWorkshop";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-
+            <Route path="/workshop-detail" element={<ViewDetailWorkshop />} />
             <Route path="/" element={<MainLayout />}>
               {routes.map((route, index) =>
                 route.index ? (
