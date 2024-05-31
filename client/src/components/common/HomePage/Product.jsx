@@ -1,58 +1,74 @@
 import React, { useEffect, useState } from "react";
-// import productList from "../../../configs/product.configs";
 import { getWorkshop } from "../../../fetchData/workshop";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
 
+import { Navigation, Pagination } from "swiper";
+
+import ButtonCustom from "../ButtonCustom";
+import "../../../slider.css";
 function Product() {
-
-  const [productList, setProductList] = useState([])
-  console.log(productList)
+  const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    getWorkshop()
-      .then(res => setProductList(res.data.data))
+    getWorkshop().then((res) => setProductList(res.data.data));
+  }, []);
 
-  }, [])
+  function formatDate(dateString) {
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", options);
+  }
 
   return (
     <div className="flex flex-col ">
-      <div className="text-center uppercase my-7">
-        <h1 className=" title text-primary">Mental Health Care Services</h1>
-        <p className="font-medium text-[14px] lg:text-base ">
-          Exploring Therapeutic Modalities and Support Services for Mental
-          Health
-        </p>
-      </div>
-
-      <div className="container mt-4">
-        <div className="grid justify-items-center grid-cols-1 gap-y-10 sm:grid-cols-2  lg:grid-cols-3 ">
-          {productList?.map((data, index) => {
-            return (
-              <div
-                key={index}
-                className="cursor-pointer flex flex-col border fea-item border-gray-300 rounded-2xl w-[90%] course-item hover:shadow-lg"
-              >
-                <div className="rounded-t-lg ">
-                  <img
-                    class="object-cover rounded-t-lg w-full h-[200px]"
-                    src={data.image}
-                    alt=""
-                  />
-                </div>
-                <div className="m-5">
-                  <h1 className="text-primary text-lg font-semibold">
-                    {data.name}
-                  </h1>
-                  <p className="text-gray-500 text-[14px]">{data.location}</p>
-                  <div className="mt-2">
-                    <div className="text-[#f05f4d]">321321đ</div>
-                    <div className="text-[15px] text-grey line-through">
-                      {data.ticketQuantity}
+      <div className="container mx-auto flex items-center justify-center mt-4">
+        <div className="container mx-auto">
+          <Swiper
+            modules={[Pagination, Navigation]}
+            pagination={{ clickable: true }}
+            navigation={true}
+            className="productSlider "
+          >
+            {productList?.map((data, index) => {
+              return (
+                <SwiperSlide
+                  key={index}
+                  className="cursor-pointer flex flex-col  fea-item  rounded-2xl w-[70%] course-item "
+                >
+                  <div
+                    className="h-[350px] w-full relative rounded-[32px]"
+                    style={{
+                      backgroundImage: `url(${data.image})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      borderRadius: "32px",
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white gap-y-5 rounded-[32px]">
+                      <h3 className="text-[40px] text-primary font-bold drop-shadow-lg uppercase ">
+                        {data.name}
+                      </h3>
+                      <p className="text-lg text-second">{data.location}</p>
+                      <p className="text-2xl font-semibold italic text-primary drop-shadow-lg ">
+                        {formatDate(data.openDate)}
+                      </p>
+                      <ButtonCustom link="/servicedetail" />
+                    </div>
+                    <div className="absolute top-4 right-8 px-5 py-2 rounded-2xl bg-[#33c2cc] text-[16px] font-medium">
+                      {data.price}$
                     </div>
                   </div>
-                </div>
-              </div>
-            );
-          })}
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
       </div>
     </div>

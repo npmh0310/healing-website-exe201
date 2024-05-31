@@ -15,7 +15,7 @@ const createWorkShop = async (token, workshopData) => {
 
 const getAllWorkShop = async (token) => {
   const response = await axios.get(API_URL);
-  console.log("Service Workshops: ", response.data);
+  // console.log("Service Workshops: ", response.data);
   return response.data.data;
 };
 
