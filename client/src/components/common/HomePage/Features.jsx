@@ -32,10 +32,10 @@ function Features() {
     ],
   };
   return (
-    <section className="section text-center bg-gray-100">
+    <section className="section text-center bg-gray-50">
       <div className="container mx-auto">
         <div>
-          <h1 className="title text-6xl uppercase text-primary mb-6">
+          <h1 className="title text-6xl font-logoTitle uppercase text-four mb-6">
             Greenteenage
           </h1>
           <p className="max-x-[639px] mx-auto mb-[50px] lg:mb-[50px] text-lg">
@@ -46,7 +46,7 @@ function Features() {
           {features.items.map((item, index) => {
             return (
               <div
-                className="container flex flex-col justify-center items-center gap-y-2 bg-slate-50 max-w-[292px] h-[220px] m-3 rounded-xl shadow-lg fea-item "
+                className="container flex flex-col justify-center items-center gap-y-2 bg-slate-50 max-w-[292px] h-[220px] m-3 rounded-md shadow-md fea-item "
                 key={index}
               >
                 <div className="title text-6xl">{item.icon}</div>

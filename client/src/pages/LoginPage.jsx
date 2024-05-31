@@ -38,13 +38,13 @@ function LoginPage() {
       <div className="container-login flex flex-row">
         <div className=" relative lg:flex justify-center hidden items-center flex-1">
           {/* <img className="w-[100%] blur-[10px]" src={ImgLogin} alt="" /> */}
-          <div className="image-container mb-[56px] w-[548px] text-second">
+          <div className="image-container mb-[56px] w-[548px] text-four">
             <p className="text-2xl font-medium min-h-8">{displayText}</p>
             <div>
-              <span className="font-semibold uppercase text-second font-logoTitle text-3xl ">
+              <span className="font-semibold uppercase text-five font-logoTitle text-3xl ">
                 - Green
               </span>
-              <span className="font-semibold uppercase text-primary font-logoTitle text-3xl ">
+              <span className="font-semibold uppercase text-four font-logoTitle text-3xl ">
                 TeenAge -
               </span>
             </div>
@@ -58,10 +58,10 @@ function LoginPage() {
         <Link className="flex flex-row items-center gap-x-2" to="/">
           <Logo size={30} />
           <div>
-            <span className="font-semibold uppercase text-second font-logoTitle text-xl ">
+            <span className="font-semibold uppercase text-five font-logoTitle text-xl ">
               Green
             </span>
-            <span className="font-semibold uppercase text-primary font-logoTitle text-xl ">
+            <span className="font-semibold uppercase text-four  font-logoTitle text-xl ">
               TeenAge
             </span>
           </div>

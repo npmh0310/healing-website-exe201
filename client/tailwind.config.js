@@ -21,12 +21,15 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: "#f683ac",
-        second: "#00BEB9",
-        third: "#7382E2",
+        primary: "#40F3FF",
+        second: "#f9f6f1",
+        third: "#82F9BF",
+        four: "#61c8f6",
+        five: "#67ae5c",
+        six: "#487b41",
         accent: {
-          1: '#CD5E88',
-          2: '#BB4D78'
+          1: "#61c8f6",
+          2: "#BB4D78",
         },
         grey: {
           DEFAULT: "#919297",
