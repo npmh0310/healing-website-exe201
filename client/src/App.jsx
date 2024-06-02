@@ -55,7 +55,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/workshop-detail" element={<ViewDetailWorkshop />} />
+            {/* <Route path="/workshop-detail" element={<ViewDetailWorkshop />} /> */}
             <Route path="/" element={<MainLayout />}>
               {routes.map((route, index) =>
                 route.index ? (

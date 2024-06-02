@@ -32,7 +32,7 @@ const SingleWorkShopPage = ({
         <div className="flex gap-x-10">
           <img
             // src={chosenWorkshop.image}
-            src="https://static.vinwonders.com/production/cafe-workshop-ha-noi1.jpg"
+            src={chosenWorkshop.image}
             alt={chosenWorkshop.name}
             className="object-cover w-[55%] rounded-lg shadow-md"
           />
@@ -45,7 +45,7 @@ const SingleWorkShopPage = ({
             </div>
             <div className="text-gray-700 mb-5 flex gap-x-2">
               <div className="font-bold">Date: </div>{" "}
-              {new Date(chosenWorkshop.openDa).toDateString()}
+              {new Date(chosenWorkshop.openDate).toDateString()}
             </div>
             <div className="text-gray-700 mb-5 flex gap-x-2">
               <div className="font-bold">Time: </div>{" "}

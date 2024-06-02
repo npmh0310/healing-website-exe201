@@ -15,6 +15,11 @@ const main = [
     path: "/contact",
     state: "contact",
   },
+  {
+    display: "blog",
+    path: "/blog",
+    state: "blog",
+  },
 ];
 const user = [];
 
