@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "../../components/common/Header/Header";
+// import Header from "../../components/common/Header/Header";
 import { getAllWorkShops } from "../../redux/features/workshop/workshopSlice";
 import { useDispatch, useSelector } from "react-redux";
 import SingleWorkShopPage from "./SingleWorkShopPage/SingleWorkShopPage";
@@ -25,8 +25,12 @@ ViewDetailWorkshop = () => {
 
   return (
     <div className="w-full">
-      <Header />
-      <div className="py-20 px-10">
+      {/* <Header /> */}
+      <h1 className="text-center text-3xl font-bold text-primary">
+        {isOpenSingleWorkshop ? "View Detail Workshop" : "View All Workshops"}
+      </h1>
+
+      <div className="py-10 px-10">
         {isOpenSingleWorkshop && (
           <SingleWorkShopPage
             setIsOpenSingleWorkshop={setIsOpenSingleWorkshop}
@@ -45,7 +49,7 @@ ViewDetailWorkshop = () => {
                   <div className="rounded-t-lg ">
                     <img
                       class="object-cover rounded-t-lg w-full h-[200px]"
-                      src="https://static.vinwonders.com/production/cafe-workshop-ha-noi1.jpg"
+                      src={workshop.image}
                       alt=""
                     />
                   </div>
@@ -59,8 +63,8 @@ ViewDetailWorkshop = () => {
                     </div>
                     <div className="text-gray-700 mb-3 flex gap-x-2">
                       <div className="font-bold">Time: </div>{" "}
-                      {new Date(workshop.timeStart).toLocaleTimeString()}{" "}
-                      - {new Date(workshop.timeEnd).toLocaleTimeString()}
+                      {new Date(workshop.timeStart).toLocaleTimeString()} -{" "}
+                      {new Date(workshop.timeEnd).toLocaleTimeString()}
                     </div>
                     <div className="flex justify-between items-center">
                       <div className="flex gap-x-2">
