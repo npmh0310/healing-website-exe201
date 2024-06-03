@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
-// import productList from "../../../configs/product.configs";
 import { getWorkshop } from "../../../fetchData/workshop";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
 
+
+import { Navigation, Pagination } from "swiper";
+
+import ButtonCustom from "../ButtonCustom";
+import "../../../slider.css";
 function Product() {
   const [productList, setProductList] = useState([]);
-  console.log(productList);
+
 
   useEffect(() => {
     getWorkshop().then((res) => setProductList(res.data.data));
   }, []);
+
 
   return (
     <div className="flex flex-col ">
@@ -19,39 +27,6 @@ function Product() {
           Health
         </p>
       </div>
-
-      {/* <div className="container mt-4">
-        <div className="grid justify-items-center grid-cols-1 gap-y-10 sm:grid-cols-2  lg:grid-cols-3 ">
-          {productList?.map((data, index) => {
-            return (
-              <div
-                key={index}
-                className="cursor-pointer flex flex-col border fea-item border-gray-300 rounded-2xl w-[90%] course-item hover:shadow-lg"
-              >
-                <div className="rounded-t-lg ">
-                  <img
-                    class="object-cover rounded-t-lg w-full h-[200px]"
-                    src={data.image}
-                    alt=""
-                  />
-                </div>
-                <div className="m-5">
-                  <h1 className="text-primary text-lg font-semibold">
-                    {data.name}
-                  </h1>
-                  <p className="text-gray-500 text-[14px]">{data.location}</p>
-                  <div className="mt-2">
-                    <div className="text-[#f05f4d]">100 000</div>
-                    <div className="text-[15px] text-grey line-through">
-                      {data.ticketQuantity}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div> */}
 
       <div className="grid justify-items-center grid-cols-1 gap-y-10 sm:grid-cols-2  lg:grid-cols-3 ">
         {productList?.map((workshop, index) => {

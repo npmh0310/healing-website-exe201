@@ -1,11 +1,12 @@
 
+
 import BlogPage from "../pages/BlogPage/BlogPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ViewDetailWorkshop from "../pages/ViewDetailWorkshop/ViewDetailWorkshop";
 import ContactUsPage from "../pages/ContactUsPage/ContactUsPage";
-
+import ServiceDetail from "../pages/ServiceDetail";
 
 const routes = [
   { index: true, element: <HomePage />, state: "home" },
@@ -29,6 +30,7 @@ const routes = [
     path: "contact",
     element: <ContactUsPage />,
   },
+  { path: "servicedetail", element: <ServiceDetail /> },
 ];
 
 export default routes;

@@ -4,7 +4,8 @@ import { getAllWorkShops } from "../../redux/features/workshop/workshopSlice";
 import { useDispatch, useSelector } from "react-redux";
 import SingleWorkShopPage from "./SingleWorkShopPage/SingleWorkShopPage";
 
-const ViewDetailWorkshop = () => {
+const 
+ViewDetailWorkshop = () => {
   const [chosenWorkshopId, setChosenWorkshopId] = useState("");
   const [isOpenSingleWorkshop, setIsOpenSingleWorkshop] = useState(false);
   const { workshops, isLoading } = useSelector((state) => state.workshops);
@@ -13,7 +14,7 @@ const ViewDetailWorkshop = () => {
     dispatch(getAllWorkShops());
   }, []);
 
-  console.log("WS", workshops);
+  // console.log("WS", workshops);
 
   //Get All
   const handleGetAllWorkshop = () => {
