@@ -4,7 +4,7 @@ const main = [
     path: "/",
     state: "home",
   },
- 
+
   {
     display: "about",
     path: "/aboutus",
@@ -19,6 +19,11 @@ const main = [
     display: "blog",
     path: "/blog",
     state: "blog",
+  },
+  {
+    display: "feadback",
+    path: "/feadback",
+    state: "feadback",
   },
 ];
 const user = [];
