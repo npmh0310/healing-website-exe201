@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { createOrder } from "../../redux/features/order/orderSlice";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify"; // Import toast từ react-toastify
+import { IoClose } from "react-icons/io5";
 
-const PaymentPage = ({ chosenWorkshopId }) => {
+const PaymentPage = ({ chosenWorkshopId, setIsOpenPaymentPage }) => {
   //Có thể xài useState hoặc useForm
   const { workshops, isLoading } = useSelector((state) => state.workshops);
 
@@ -18,18 +22,67 @@ const PaymentPage = ({ chosenWorkshopId }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [buyerProblem, setBuyerProblem] = useState("");
+
   // const dispatch = useDispatch();
 
-  const handleSubmit = () => {
-    console.log("Buying ticket", {
-      name: buyerName,
-      phone: phoneNumber,
-      ticketQuantity: ticketQuantity,
-      paymentMethod: paymentMethod,
-      totalPrice: totalPrice,
-    });
+  // const handleSubmit = () => {
+  //   console.log("Buying ticket", {
+  //     name: buyerName,
+  //     phone: phoneNumber,
+  //     ticketQuantity: ticketQuantity,
+  //     paymentMethod: paymentMethod,
+  //     totalPrice: totalPrice,
+  //   });
 
-    alert("Thông tin đơn hàng đã được gửi đi");
+  //   alert("Thông tin đơn hàng đã được gửi đi");
+  // };
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleSubmit = async () => {
+    if (!buyerName.trim()) {
+      toast.error("Vui lòng nhập tên");
+      return;
+    }
+
+    if (!phoneNumber.trim()) {
+      toast.error("Vui lòng nhập số điện thoại");
+      return;
+    }
+
+    if (ticketQuantity == 0) {
+      toast.error("Vui lòng nhập số lượng vé");
+      return;
+    }
+
+    if (!paymentMethod.trim()) {
+      toast.error("Vui lòng chọn phương thức thanh toán");
+      return;
+    }
+
+    const orderData = {
+      buyerName,
+      phoneNumber,
+      ticketQuantity,
+      paymentMethod,
+      totalPrice,
+      buyerProblem,
+      workshopId: chosenWorkshopId,
+    };
+
+    const result = await dispatch(createOrder(orderData));
+    if (result.type.endsWith("fulfilled")) {
+      toast.success(
+        "Gửi form mua vé thành công, hãy đợi admin kiểm tra thông tin và gửi vé về mail nhé"
+      );
+      navigate("/");
+    } else if (result?.error?.message === "Rejected") {
+      toast.error("Gửi form mua vé thất bại hệ thống đã có lỗi");
+      // toast.error(result?.payload, errorStyle);
+    }
   };
 
   useEffect(() => {
@@ -42,6 +95,7 @@ const PaymentPage = ({ chosenWorkshopId }) => {
   return (
     <div className="h-full mx-auto px-4 select-none">
       <div className="bg-white shadow-md rounded-lg p-10">
+        <IoClose size={35} className="absolute -mt-5 -ml-5 hover:text-red-800 cursor-pointer" onClick={() => setIsOpenPaymentPage(false)}/>
         <div className="flex gap-x-10">
           <div className="px-6 flex-col">
             <h1 className="text-4xl font-bold mb-5 text-primary">
@@ -71,6 +125,23 @@ const PaymentPage = ({ chosenWorkshopId }) => {
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
+
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 mb-2"
+                htmlFor="buyerProblem"
+              >
+                Bạn có thể chia sẻ về vấn đề bạn đang gặp phải không:
+              </label>
+              <textarea
+                id="buyerProblem"
+                placeholder="Có thể bỏ trống"
+                className="w-full p-2 border border-gray-300 rounded"
+                value={buyerProblem}
+                onChange={(e) => setBuyerProblem(e.target.value)}
+              ></textarea>
+            </div>
+
             <div className="mb-4">
               <label
                 className="block text-gray-700 mb-2"
@@ -146,7 +217,9 @@ const PaymentPage = ({ chosenWorkshopId }) => {
                     alt="Momo"
                     className="object-cover w-[300px] h-[300px]"
                   />
-                  <div>0905000000 | Ahihi</div>
+                  <div className="w-full">
+                    Chi tiết: Greenteenage | 0901234567
+                  </div>
                 </div>
               )}
               {paymentMethod === "VNpay" && (
@@ -156,12 +229,12 @@ const PaymentPage = ({ chosenWorkshopId }) => {
                     alt="VNpay"
                     className="object-cover w-[300px] h-[300px]"
                   />
-                  <div>Chi tiết: Vietinbank bla bla bla</div>
+                  <div>Chi tiết: Vietinbank | 0999999999</div>
                 </div>
               )}
             </div>
 
-            <div className="text-gray-700 mb-5 flex gap-x-2">
+            <div className="text-gray-700 mb-5 flex gap-x-2 mt-2">
               <div className="font-bold">Nội dung thanh toán: </div>
               <div className="text-gray-700">"Họ Và Tên" - "Số Điện Thoại"</div>
             </div>
@@ -174,7 +247,7 @@ const PaymentPage = ({ chosenWorkshopId }) => {
                   checked={isChecked}
                   onChange={() => setIsChecked(!isChecked)}
                 />
-                Tôi đã kiểm tra lại thông tin trước khi thanh toán
+                Tôi đã thanh toán và kiểm tra lại toàn bộ thông tin.
               </label>
             </div>
             {errorMessage && (

@@ -10,6 +10,7 @@ var speakerRoute = require("./routes/speaker");
 var passport = require("passport");
 const session = require("express-session");
 const User = require("./models/User");
+const orderRoute = require("./routes/order");
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 // const passportSetup = require("./passport")
 // const ggRouter = require("./routes/googleAuth")
@@ -99,6 +100,8 @@ app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/workshops", workshopRoute);
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/speaker", speakerRoute);
+app.use("/api/v1/order", orderRoute);
+
 
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));

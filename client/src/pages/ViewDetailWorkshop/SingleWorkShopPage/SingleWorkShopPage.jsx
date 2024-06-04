@@ -25,7 +25,7 @@ const SingleWorkShopPage = ({
     <div className="h-full mx-auto px-4 select-none">
       {isOpenPaymentPage && (
         <div className="payment-overlay">
-          <PaymentPage chosenWorkshopId={chosenWorkshopId} />
+          <PaymentPage chosenWorkshopId={chosenWorkshopId} setIsOpenPaymentPage={setIsOpenPaymentPage}/>
         </div>
       )}
       <div className="bg-white shadow-md rounded-lg p-10">
@@ -74,12 +74,24 @@ const SingleWorkShopPage = ({
 
             <div className="text-gray-700 mb-8 flex gap-x-2">
               <div className="font-bold">Price: </div>{" "}
-              <div className="line-through">${chosenWorkshop.price}</div>
+              {chosenWorkshop.ticketSale === 0 ? (
+                <div className="text-[#f77e47]">{chosenWorkshop.price} vnd</div>
+              ) : (
+                <div className="flex gap-x-2">
+                  <div className="line-through">{chosenWorkshop.price} vnd</div>
+                  <div className="text-[#f77e47]">
+                    {chosenWorkshop.price -
+                      (chosenWorkshop.price * chosenWorkshop.ticketSale) / 100}
+                    vnd
+                  </div>
+                </div>
+              )}
+              {/* <div className="line-through">{chosenWorkshop.price}vnd</div>
               <div className="text-[#f77e47]">
-                $
                 {chosenWorkshop.price -
                   (chosenWorkshop.price * chosenWorkshop.ticketSale) / 100}
-              </div>
+                vnd
+              </div> */}
             </div>
 
             <button
