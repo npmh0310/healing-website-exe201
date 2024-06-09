@@ -1,9 +1,11 @@
 import axios from "./axios";
 
 const getWorkshop = () => {
-    return axios.get("workshops");
-}
+  return axios.get("workshops");
+};
 
-export {
-    getWorkshop
-}
+const getWorkshopById = (id) => {
+  return axios.get(`workshops/${id}`);
+};
+
+export { getWorkshop, getWorkshopById };

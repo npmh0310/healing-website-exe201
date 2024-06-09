@@ -69,7 +69,7 @@ const Footer = () => {
     },
   };
   return (
-    <footer className="bg-primary pt-16 pb-12">
+    <footer className="bg-four pt-16 pb-12">
       <div className="container mx-auto">
         <div className="flex flex-col gap-y-8 lg:flex-row lg:gap-x-20 pb-12 border-b border-black ">
           <div className="mb-5">
@@ -82,7 +82,9 @@ const Footer = () => {
           <div className="flex flex-row w-full lg:w-[50%]">
             <div className="flex-grow">
               <div>
-                <h1 className="title lg:text-2xl">{footer.company.name}</h1>
+                <h1 className="title  lg:text-xl uppercase">
+                  {footer.company.name}
+                </h1>
               </div>
               <div className="flex flex-col gap-y-3">
                 <ul className="space-y-3">
@@ -100,7 +102,9 @@ const Footer = () => {
             </div>
             <div className="flex-grow">
               <div>
-                <h1 className="title lg:text-2xl">{footer.social.name}</h1>
+                <h1 className="title  lg:text-xl uppercase">
+                  {footer.social.name}
+                </h1>
               </div>
               <div className="flex flex-col gap-y-3">
                 <ul className="space-y-3">
@@ -118,7 +122,9 @@ const Footer = () => {
             </div>
             <div className="flex-grow">
               <div>
-                <h1 className="title lg:text-2xl">{footer.support.name}</h1>
+                <h1 className="title lg:text-xl uppercase">
+                  {footer.support.name}
+                </h1>
               </div>
               <div className="flex flex-col gap-y-3">
                 <ul className="space-y-3">
@@ -136,7 +142,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex flex-col">
-            <h1 className="title lg:text-2xl">subscribe</h1>
+            <h1 className="title  lg:text-xl uppercase">subscribe</h1>
             <p className="text-sm mb-5">
               Join a Community of Healing: Let's Transform Lives through Art
             </p>

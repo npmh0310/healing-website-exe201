@@ -1,28 +1,28 @@
 import React from "react";
 import "../ContactUsPage/ContactUsPage.css";
-import { FaPhoneVolume,FaQuestion, FaNewspaper } from "react-icons/fa6";
+import { FaPhoneVolume, FaQuestion, FaNewspaper } from "react-icons/fa6";
 import { MdBugReport } from "react-icons/md";
 const listContacts = [
   {
-    icon: <FaPhoneVolume className="size-6"/>,
+    icon: <FaPhoneVolume className="size-6" />,
     name: "Technical support",
     mail: "grteenagesupport@example.com",
     phone: "+84 234-567-89",
   },
   {
-    icon: <FaQuestion className="size-6"/>,
+    icon: <FaQuestion className="size-6" />,
     name: "Sales questions",
     mail: "grteenagesales@example.com",
     phone: "+84 234-567-89",
   },
   {
-    icon: <FaNewspaper className="size-6"/>,
+    icon: <FaNewspaper className="size-6" />,
     name: "Press",
     mail: "grteenagepress@example.com",
     phone: "+84 234-567-89",
   },
   {
-    icon: <MdBugReport className="size-6"/>,
+    icon: <MdBugReport className="size-6" />,
     name: "Bug report",
     mail: "grteenagereport@example.com",
     phone: "+84 234-567-89",
@@ -31,13 +31,13 @@ const listContacts = [
 
 const ContactUsPage = () => {
   return (
-    <div className="container mb-12 mx-auto px-2 md:px-4">
+    <div className="container  py-[74px] mb-12 mx-auto px-2 md:px-4">
       <section className="mb-32">
         <div className="flex justify-center">
           <div className="text-center">
-            <h2 className="mb-10 px-6 text-4xl font-bold text-primary">
-              Contact us
-            </h2>
+            <h1 className="text-center my-10 text-5xl italic font-extrabold font-primary text-four">
+              CONTACT US
+            </h1>
           </div>
         </div>
         <div className="flex flex-wrap">

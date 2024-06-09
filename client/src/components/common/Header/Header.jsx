@@ -68,8 +68,10 @@ const Header = () => {
   return (
     <header
       className={`${
-        bg ? "bg-[white] shadow-md  shadow-bottom  py-4 lg:py-4" : "bg-none"
-      }  fixed left-0 w-full py-4 lg:py-4 z-10 transition-all duration-200`}
+        bg ? "bg-[white] shadow-md shadow-bottom py-4 lg:py-4" : "bg-none"
+      }  fixed left-0 w-full py-4 lg:py-4 z-10 transition-all duration-200 ${
+        isHomePage ? "header-hidden" : ""
+      }`}
     >
       <div className=" flex items-center justify-around gap-x-32">
         <div className="flex items-center justify-between ">

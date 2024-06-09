@@ -76,10 +76,10 @@ const BlogPage = () => {
   return (
     <>
       {allBlog && (
-        <section className="container mx-auto py-10">
-          <h2 className="text-3xl font-bold text-center mb-10 text-primary">
-            Bài viết mới nhất
-          </h2>
+        <section className="container mx-auto py-[74px]">
+          <h1 className="text-center my-10 text-5xl italic font-extrabold font-primary text-four">
+            BLOG PAGE
+          </h1>
           {/* "cursor-pointer flex flex-col border fea-item border-gray-300 rounded-2xl w-[90%] course-item hover:shadow-lg" */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
             {posts.map((post, index) => (
@@ -104,7 +104,7 @@ const BlogPage = () => {
       )}
       {openBlog1 && (
         <div>
-          <div className="mb-20 mx-52">
+          <div className="mb-20 mx-52  py-[74px]  py-[74px]">
             <article className="container mx-auto px-10 py-3 bg-white rounded-lg shadow-lg mt-6">
               <h1 className="text-4xl font-bold mb-2 text-center">
                 Lợi ích của thiền định
@@ -171,9 +171,9 @@ const BlogPage = () => {
         </div>
       )}
 
-{openBlog4 && (
+      {openBlog4 && (
         <div>
-          <div className="mb-20 mx-52">
+          <div className="mb-20 mx-52  py-[74px]">
             <article className="container mx-auto px-10 py-3 bg-white rounded-lg shadow-lg mt-6">
               <h1 className="text-4xl font-bold mb-2 text-center">
                 Lợi ích của thiền định
@@ -242,10 +242,10 @@ const BlogPage = () => {
 
       {openBlog2 && (
         <div>
-          <div className="mb-20 mx-52">
+          <div className="mb-20 mx-52  py-[74px]">
             <article className="container mx-auto px-10 py-3 bg-white rounded-lg shadow-lg mt-6">
               <h1 className="text-4xl font-bold mb-2 text-center">
-              Cách thực hành yoga đúng cách
+                Cách thực hành yoga đúng cách
               </h1>
               <address className="flex items-center mb-6 not-italic">
                 <div className="inline-flex items-center mr-3 text-sm text-gray-900">
@@ -314,7 +314,7 @@ const BlogPage = () => {
 
       {openBlog3 && (
         <div>
-          <div className="mb-20 mx-52">
+          <div className="mb-20 mx-52  py-[74px]">
             <article className="container mx-auto px-10 py-3 bg-white rounded-lg shadow-lg mt-6">
               <h1 className="text-4xl font-bold mb-2 text-center">
                 Trà thảo mộc giúp giảm stress

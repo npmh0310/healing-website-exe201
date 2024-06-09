@@ -1,11 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const ButtonCustom = ({ link }) => {
+const ButtonCustom = ({ link, id }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(link);
+    navigate(`${link}/${id}`);
   };
   return (
     <div

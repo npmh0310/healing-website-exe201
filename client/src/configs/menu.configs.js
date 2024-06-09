@@ -5,11 +5,7 @@ const main = [
     state: "home",
   },
  
-  {
-    display: "about",
-    path: "/aboutus",
-    state: "aboutus",
-  },
+
   {
     display: "contact",
     path: "/contact",

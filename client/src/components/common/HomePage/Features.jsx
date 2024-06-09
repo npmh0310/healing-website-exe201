@@ -11,7 +11,7 @@ function Features() {
     items: [
       {
         icon: <HiAcademicCap />,
-        title: "1000+",
+        title: "10+",
         subtitle: "Customer",
       },
       {
@@ -50,7 +50,7 @@ function Features() {
                 key={index}
               >
                 <div className="title text-6xl">{item.icon}</div>
-                <h4 className="font-semibold text-base sm:text-xl text-primary">
+                <h4 className="font-semibold text-base sm:text-xl text-four">
                   {item.title}
                 </h4>
                 <p>{item.subtitle}</p>

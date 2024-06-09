@@ -16,22 +16,20 @@ import ViewDetailWorkshop from "./pages/ViewDetailWorkshop/ViewDetailWorkshop";
 import { useEffect } from "react";
 import { getProfile } from "./fetchData/auth";
 import { userLoginSuccess } from "./redux/features/authSlice";
-
+import { GlobalStyles } from "@mui/material";
 
 function App() {
-
   const dispatch = useDispatch();
-  const isLogin = useSelector((state) => state.auth.isLogin)
-
+  const isLogin = useSelector((state) => state.auth.isLogin);
 
   useEffect(() => {
     if (!isLogin) {
       getProfile()
-        .then(response => {
+        .then((response) => {
           console.log(response.data);
-          dispatch(userLoginSuccess(response.data.data))// Lấy dữ liệu từ response
+          dispatch(userLoginSuccess(response.data.data)); // Lấy dữ liệu từ response
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("Error fetching profile data", error);
         });
     }
@@ -39,6 +37,11 @@ function App() {
 
   return (
     <>
+      <GlobalStyles
+        styles={{
+          body: { paddingRight: "0 !important", overflow: "auto !important" },
+        }}
+      />
       {/* config toastify */}
       <ToastContainer
         position="bottom-left"

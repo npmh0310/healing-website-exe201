@@ -43,3 +43,19 @@
   transform: translate(-50%, -50%);
   z-index: -1;  /* Ensures the circle is behind the content */
 }
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.header-hidden {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 1s; /* Adjust this delay to match your content animation */
+}
