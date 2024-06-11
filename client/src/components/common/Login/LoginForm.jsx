@@ -73,7 +73,7 @@ function LoginForm() {
     <div className="signin-form w-[524px]  px-12 py-14 mx-auto  bg-white rounded-lg ">
       <div className="mb-5">
         <h1
-          className=" mb-8 text-5xl text-primary  font-logoTitle"
+          className=" mb-8 text-5xl text-four  font-logoTitle"
           id="typing-animation"
         >
           {signInData.name}
@@ -88,7 +88,7 @@ function LoginForm() {
             <div className="flex items-center text-[13px] gap-x-2">
               <p>{signInData.subtitle}</p>
               <Link
-                className="text-[13px]  text-primary font-medium"
+                className="text-[13px]  text-four font-medium"
                 to="/register"
               >
                 Sign up
@@ -168,7 +168,7 @@ function LoginForm() {
           </div>
           <a
             href="/"
-            className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+            className="text-sm font-medium text-four-600 hover:underline dark:text-primary-500"
           >
             Forgot password?
           </a>
@@ -176,7 +176,7 @@ function LoginForm() {
         <div className="button-login text-center ">
           <button
             onClick={handleClick}
-            className="btnLogin border hover:bg-[#03ecbe] text-white bg-primary transition  transform hover:scale-105 ]">
+            className="btnLogin border hover:bg-[#03ecbe] text-white bg-four transition  transform hover:scale-105 ]">
             {signInData.buttonLogin}
           </button>
         </div>

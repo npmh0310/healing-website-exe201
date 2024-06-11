@@ -27,7 +27,7 @@ const ModalBuy = ({ serviceData, handleClose }) => {
       <div className="bg-white shadow-md rounded-lg p-10">
         <div className="flex gap-x-10">
           <div className="px-6">
-            <h1 className="text-4xl font-bold mb-5 text-center text-primary">
+            <h1 className="text-4xl font-bold mb-5 text-center text-four">
               Buy ticket "{serviceData.name}""
             </h1>
             <div className="mb-4">
@@ -87,13 +87,13 @@ const ModalBuy = ({ serviceData, handleClose }) => {
                 </div>
               ) : (
                 <div className="flex gap-x-2">
-                  <div className="line-through">
+                  <div className="">
                     {serviceData.price * ticketQuantity} vnd
                   </div>
-                  <div className="text-[#f77e47]">
+                  {/* <div className="text-[#f77e47]">
                     {totalPrice}
                     vnd
-                  </div>
+                  </div> */}
                 </div>
               )}
             </div>
@@ -165,7 +165,7 @@ const ModalBuy = ({ serviceData, handleClose }) => {
               <div className="mb-4 text-red-500">{errorMessage}</div>
             )}
             <button
-              className={`w-full py-2 px-4 bg-primary text-white font-bold rounded ${
+              className={`w-full py-2 px-4 bg-four text-white font-bold rounded ${
                 isChecked
                   ? "hover:bg-blue-400"
                   : "cursor-not-allowed opacity-50"
