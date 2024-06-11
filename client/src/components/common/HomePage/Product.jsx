@@ -5,7 +5,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import { Navigation, Pagination } from "swiper";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 import ButtonCustom from "../ButtonCustom";
 import "../../../slider.css";
 function Product() {
@@ -25,11 +26,14 @@ function Product() {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", options);
   }
-
+  useEffect(() => {
+    AOS.init({ duration: 1400, once: true });
+  }, []);
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col "  data-aos="zoom-in"
+        data-aos-delay="500">
       <div className="container mx-auto flex items-center justify-center mt-4">
-        <div className="container mx-auto">
+        <div className="container mx-auto"   >
           <Swiper
             modules={[Pagination, Navigation]}
             pagination={{ clickable: true }}

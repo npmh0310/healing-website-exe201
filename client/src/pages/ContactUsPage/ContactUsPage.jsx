@@ -2,6 +2,7 @@ import React from "react";
 import "../ContactUsPage/ContactUsPage.css";
 import { FaPhoneVolume, FaQuestion, FaNewspaper } from "react-icons/fa6";
 import { MdBugReport } from "react-icons/md";
+
 const listContacts = [
   {
     icon: <FaPhoneVolume className="size-6" />,
@@ -21,99 +22,92 @@ const listContacts = [
     mail: "grteenagepress@example.com",
     phone: "+84 234-567-89",
   },
-  {
-    icon: <MdBugReport className="size-6" />,
-    name: "Bug report",
-    mail: "grteenagereport@example.com",
-    phone: "+84 234-567-89",
-  },
 ];
 
 const ContactUsPage = () => {
   return (
-    <div className="container  py-[74px] mb-12 mx-auto px-2 md:px-4">
+    <div className="container pt-32 mb-12 mx-auto px-4 md:px-8">
       <section className="mb-32">
-        <div className="flex justify-center">
-          <div className="text-center">
-            <h1 className="text-center my-10 text-5xl italic font-extrabold font-primary text-four">
-              CONTACT US
-            </h1>
-          </div>
+        <div className="flex justify-center mb-10">
+          <h1 className="text-5xl italic font-semibold font-logoTitle text-four">
+            CONTACT US
+          </h1>
         </div>
-        <div className="flex flex-wrap">
-          <form className="mb-12 w-full shrink-0 grow-0 basis-auto md:px-3 lg:mb-0 lg:w-6/12 lg:px-6">
-            <div className="mb-6 w-full">
+        <div className="flex flex-col items-center lg:flex-row lg:justify-between lg:space-x-6">
+          <form className="mb-12 w-full lg:w-5/12">
+            <div className="mb-6">
               <label
-                className="block font-medium mb-[2px] text-teal-600"
-                htmlFor="exampleInput90"
+                className="block font-medium mb-2 text-teal-600"
+                htmlFor="nameInput"
               >
                 Name
               </label>
               <input
                 type="text"
-                className="px-2 py-2 border w-full outline-none rounded-md"
-                id="exampleInput90"
+                className="px-4 py-3 border w-full outline-none rounded-md shadow-sm focus:border-teal-400"
+                id="nameInput"
                 placeholder="Name"
               />
             </div>
 
-            <div className="mb-6 w-full">
+            <div className="mb-6">
               <label
-                className="block font-medium mb-[2px] text-teal-600"
-                htmlFor="exampleInput90"
+                className="block font-medium mb-2 text-teal-600"
+                htmlFor="emailInput"
               >
                 Email
               </label>
               <input
                 type="email"
-                className="px-2 py-2 border w-full outline-none rounded-md"
-                id="exampleInput90"
+                className="px-4 py-3 border w-full outline-none rounded-md shadow-sm focus:border-teal-400"
+                id="emailInput"
                 placeholder="Enter your email address"
               />
             </div>
 
-            <div className="mb-6 w-full">
+            <div className="mb-6">
               <label
-                className="block font-medium mb-[2px] text-teal-600"
-                htmlFor="exampleInput90"
+                className="block font-medium mb-2 text-teal-600"
+                htmlFor="messageInput"
               >
                 Message
               </label>
               <textarea
-                className="px-2 py-2 border rounded-[5px] w-full outline-none"
-                name=""
-                id=""
+                className="px-4 py-3 border rounded-md w-full outline-none shadow-sm focus:border-teal-400"
+                id="messageInput"
+                placeholder="Your message"
               ></textarea>
             </div>
 
             <button
               type="button"
-              className="mb-6 inline-block w-full rounded bg-teal-400 px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md hover:bg-teal-500"
+              className="mb-6 w-full rounded bg-teal-500 px-6 py-3 font-medium uppercase leading-normal text-white shadow-md hover:bg-teal-600"
             >
               Send
             </button>
           </form>
 
-          <div className="flex items-center w-full shrink-0 grow-0 basis-auto lg:w-6/12">
-            <div className="flex flex-wrap">
-              {listContacts.map((contact, index) => {
-                return (
-                  <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:px-6">
-                    <div className="flex items-start">
-                      <div className="shrink-0">
-                        <div className="inline-block rounded-md bg-teal-400-100 px-4 text-teal-600">
-                          {contact.icon}
-                        </div>
-                      </div>
-                      <div className="ml-2 grow">
-                        <p className="mb-2 font-bold">{contact.name}</p>
-                        <p className="text-neutral-500 ">{contact.mail}</p>
-                        <p className="text-neutral-500 ">{contact.phone}</p>
-                      </div>
+          <div className="w-full lg:w-5/12">
+            <div className="space-y-6">
+              {listContacts.map((contact, index) => (
+                <div
+                  key={index}
+                  className="flex items-start p-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200"
+                >
+                  <div className="shrink-0">
+                    <div className="inline-block rounded-full bg-teal-100 p-4 text-teal-600">
+                      {contact.icon}
                     </div>
                   </div>
-                );
-              })}
+                  <div className="ml-4">
+                    <p className="mb-1 font-bold text-lg text-teal-700">
+                      {contact.name}
+                    </p>
+                    <p className="text-neutral-500">{contact.mail}</p>
+                    <p className="text-neutral-500">{contact.phone}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
