@@ -8,4 +8,9 @@ const getWorkshopById = (id) => {
   return axios.get(`workshops/${id}`);
 };
 
-export { getWorkshop, getWorkshopById };
+const payment = () => {
+  const amount = 10000
+  return axios.post(`payment/create-payment-link`, { amount: amount });
+}
+
+export { getWorkshop, getWorkshopById, payment };
