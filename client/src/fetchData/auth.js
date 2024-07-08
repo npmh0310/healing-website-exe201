@@ -14,7 +14,7 @@ const getProfile = () => {
 }
 
 const onLogout = () => {
-    return axios.get("http://localhost:4000/logout");
+    return axios.get("https://healing-website-exe201-npmh310s-projects.vercel.app/logout");
 }
 
 export {
