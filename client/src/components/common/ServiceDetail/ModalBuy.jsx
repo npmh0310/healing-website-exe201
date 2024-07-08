@@ -98,10 +98,6 @@ const ModalBuy = ({ serviceData, handleClose }) => {
                   <div className="">
                     {serviceData.price * ticketQuantity} vnd
                   </div>
-                  {/* <div className="text-[#f77e47]">
-                    {totalPrice}
-                    vnd
-                  </div> */}
                 </div>
               )}
             </div>
