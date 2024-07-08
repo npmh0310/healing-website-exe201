@@ -136,6 +136,10 @@ orderRouter.post("/confirm-webhook", async (req, res) => {
 
 orderRouter.post("/receive-hook", async (req, res) => {
     console.log(req.body)
+    res.status(200).json({
+        message: "oke roi ne",
+        data: req.body
+    })
 })
 
 module.exports = orderRouter;
