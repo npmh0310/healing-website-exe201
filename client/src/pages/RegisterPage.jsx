@@ -83,7 +83,7 @@ function RegisterForm() {
       <div className="signin-form w-[524px] my-16 px-12 py-14 mx-auto bg-white rounded-lg border border-gray-200 ">
         <div className="mb-10">
           <h1
-            className="text-5xl text-primary  font-logoTitle"
+            className="text-5xl text-four  font-logoTitle"
             id="typing-animation"
           >
             Sign Up
@@ -103,7 +103,7 @@ function RegisterForm() {
                 <div className="flex items-center text-[13px] gap-x-2">
                   <p>{signUpData.subtitle}</p>
                   <Link
-                    className="text-[13px]  text-primary font-medium"
+                    className="text-[13px]  text-four font-medium"
                     to="/login"
                   >
                     Log in
@@ -170,7 +170,7 @@ function RegisterForm() {
 
           <div className="button-login text-center ">
             <button
-              className="btnLogin border hover:bg-[#03ecbe] text-white bg-primary transition  transform hover:scale-105 ]"
+              className="btnLogin border hover:bg-[#03ecbe] text-white bg-four transition  transform hover:scale-105 ]"
               onClick={handleClick}
             >
               {signUpData.buttonLogin}

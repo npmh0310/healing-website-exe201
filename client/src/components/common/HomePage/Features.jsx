@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   HiAcademicCap,
   HiAnnotation,
   HiUserGroup,
   HiBriefcase,
 } from "react-icons/hi";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./style.css";
 function Features() {
+  
+  useEffect(() => {
+    AOS.init({ duration: 1400, once: true });
+    window.addEventListener("load", AOS.refresh);
+  }, []);
   const features = {
     items: [
       {
@@ -34,8 +41,9 @@ function Features() {
   return (
     <section className="section text-center bg-gray-50">
       <div className="container mx-auto">
-        <div>
-          <h1 className="title text-6xl font-logoTitle uppercase text-four mb-6">
+        <div data-aos="fade-up"
+          data-aos-delay="100">
+          <h1 className="title text-6xl font-logoTitle uppercase text-four mb-6"   >
             Greenteenage
           </h1>
           <p className="max-x-[639px] mx-auto mb-[50px] lg:mb-[50px] text-lg">
@@ -46,7 +54,8 @@ function Features() {
           {features.items.map((item, index) => {
             return (
               <div
-                className="container flex flex-col justify-center items-center gap-y-2 bg-slate-50 max-w-[292px] h-[220px] m-3 rounded-md shadow-md fea-item "
+                className="container flex flex-col justify-center items-center gap-y-2 bg-slate-50 max-w-[292px] h-[220px] m-3 rounded-md shadow-md fea-item "   data-aos="fade-left"
+                data-aos-delay={300 + index * 200}
                 key={index}
               >
                 <div className="title text-6xl">{item.icon}</div>
