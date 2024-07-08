@@ -10,10 +10,9 @@ var speakerRoute = require("./routes/speaker");
 var passport = require("passport");
 const session = require("express-session");
 const User = require("./models/User");
-const orderRouter = require("./controllers/order");
-const PayOS = require("@payos/node");
 var GoogleStrategy = require("passport-google-oauth20").Strategy;
-
+var jwt = require("jsonwebtoken");
+const orderRouter = require("./controllers/order");
 // const passportSetup = require("./passport")
 // const ggRouter = require("./routes/googleAuth")
 dotenv.config();
@@ -107,38 +106,61 @@ app.use("/api/v1/users", userRoute);
 app.use("/api/v1/speaker", speakerRoute);
 app.use("/api/v1/payment", orderRouter);
 
-
 app.get(
   "/auth/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    failureRedirect: process.env.CLIENT_URL_LOGIN_FAILED,
-    successRedirect: process.env.CLIENT_URL,
-  })
-);
+// app.get(
+//   "/auth/google/callback",
+//   passport.authenticate("google", {
+//     failureRedirect: process.env.CLIENT_URL_LOGIN_FAILED,
+//     successRedirect: process.env.CLIENT_URL,
+//   })
+// );
 
-// app.post('/api/v1/create-payment-link', async (req, res) => {
-//   const YOUR_DOMAIN = 'http://localhost:3000';
-//   const body = {
-//     orderCode: Number(String(Date.now()).slice(-6)),
-//     amount: req.body.amount,
-//     description: 'Thanh toan don hang',
-//     returnUrl: `${YOUR_DOMAIN}/success.html`,
-//     cancelUrl: `${YOUR_DOMAIN}/cancel.html`
-//   };
+app.get('/auth/google/callback',
+  (req, res, next) => {
+    passport.authenticate(
 
-//   try {
-//     const paymentLinkResponse = await payos.createPaymentLink(body);
-//     res.redirect(paymentLinkResponse.checkoutUrl);
-//   } catch (error) {
-//     console.error(error);
-//     res.send('Something went error');
-//   }
-// });
+      'google',
+
+      { successRedirect: process.env.CLIENT_URL, failureRedirect: process.env.CLIENT_URL_LOGIN_FAILED, failureMessage: true },
+
+      async (error, user, info) => {
+        if (error) {
+          return res.send({ message: error.message });
+        }
+        console.log(user)
+        if (user) {
+          try {
+            const token = jwt.sign(
+              { id: user._id, role: user.role, email: user.email },
+              process.env.JWT_SECRET_KEY,
+              { expiresIn: "15d" }
+            )
+
+            console.warn("hihi")
+            // your success code
+            return res
+              .cookie('accessToken', token, {
+                httpOnly: true,
+                expires: token.expiresIn
+              })
+              .status(200)
+              // .send({
+              //     user: user,
+              //     message: 'Login Successful'
+              // })
+              .redirect(process.env.CLIENT_URL)
+              ;
+          } catch (error) {
+            // error msg 
+            return res.send({ message: error.message });
+          }
+        }
+      })(req, res, next);
+  });
 
 app.get("/login/success", async (req, res) => {
   if (req.user) {

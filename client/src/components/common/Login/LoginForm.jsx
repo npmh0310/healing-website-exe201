@@ -66,7 +66,7 @@ function LoginForm() {
   }
 
   const handleLoginGoogle = () => {
-    window.open("http://localhost:4000/auth/google/callback", "_self")
+    window.open("https://healing-website-exe201-npmh310s-projects.vercel.app/auth/google/callback", "_self")
   }
 
   return (

@@ -5,13 +5,13 @@ const orderRouter = express.Router();
 const payos = new PayOS('482856c1-3fa7-4d8e-8f2d-5a36ecce35ba', 'fc6e29d9-f938-4ffc-a5d1-c5e9f90a3616', '7aa87fcb5c2ad082042a3a9f16e5820e86ffe6879dbec9da177677e526f4d7a9')
 
 orderRouter.post('/create-payment-link', async (req, res) => {
-    const YOUR_DOMAIN = 'http://localhost:3000';
+    const YOUR_DOMAIN = 'https://healing-website-exe201-npmh310s-projects.vercel.app';
     const body = {
         orderCode: Number(String(Date.now()).slice(-6)),
         amount: req.body.amount,
         description: 'Thanh toan don hang',
-        returnUrl: `${YOUR_DOMAIN}/success.html`,
-        cancelUrl: `${YOUR_DOMAIN}/cancel.html`
+        returnUrl: `${YOUR_DOMAIN}/success`,
+        cancelUrl: `${YOUR_DOMAIN}/cancel`
     };
 
     try {
@@ -118,11 +118,11 @@ orderRouter.put("/:orderId", async function (req, res) {
 orderRouter.post("/confirm-webhook", async (req, res) => {
     const { webhookUrl } = req.body;
     try {
-        await payos.confirmWebhook(webhookUrl);
+        const res = await payos.confirmWebhook(webhookUrl);
         return res.json({
             error: 0,
             message: "ok",
-            data: null,
+            data: res,
         });
     } catch (error) {
         console.error(error);
@@ -133,5 +133,9 @@ orderRouter.post("/confirm-webhook", async (req, res) => {
         });
     }
 });
+
+orderRouter.post("/receive-hook", async (req, res) => {
+    console.log(req.body)
+})
 
 module.exports = orderRouter;
