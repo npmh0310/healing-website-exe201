@@ -19,10 +19,10 @@ const ModalBuy = ({ serviceData, handleClose }) => {
       paymentMethod: paymentMethod,
       totalPrice: totalPrice,
     });
-    const res = await payment()
+    const res = await payment();
     if (res) {
-      console.log(res.data)
-      window.open(res.data.url, "_self")
+      console.log(res.data);
+      window.open(res.data.url, "_self");
     }
 
     // payment()
@@ -104,19 +104,21 @@ const ModalBuy = ({ serviceData, handleClose }) => {
 
             <div className="mb-4 flex justify-center gap-4">
               <button
-                className={`py-2 px-4 rounded ${paymentMethod === "Momo"
-                  ? "bg-pink-500 text-white"
-                  : "bg-gray-300 text-black"
-                  }`}
+                className={`py-2 px-4 rounded ${
+                  paymentMethod === "Momo"
+                    ? "bg-pink-500 text-white"
+                    : "bg-gray-300 text-black"
+                }`}
                 onClick={() => setPaymentMethod("Momo")}
               >
                 Pay with momo
               </button>
               <button
-                className={`py-2 px-4 rounded ${paymentMethod === "VNpay"
-                  ? "bg-pink-500 text-white"
-                  : "bg-gray-300 text-black"
-                  }`}
+                className={`py-2 px-4 rounded ${
+                  paymentMethod === "VNpay"
+                    ? "bg-pink-500 text-white"
+                    : "bg-gray-300 text-black"
+                }`}
                 onClick={() => setPaymentMethod("VNpay")}
               >
                 Pay with VNpay
@@ -167,10 +169,11 @@ const ModalBuy = ({ serviceData, handleClose }) => {
               <div className="mb-4 text-red-500">{errorMessage}</div>
             )}
             <button
-              className={`w-full py-2 px-4 bg-primary text-white font-bold rounded ${isChecked
-                ? "hover:bg-blue-400"
-                : "cursor-not-allowed opacity-50"
-
+              className={`w-full py-2 px-4 bg-primary text-white font-bold rounded ${
+                isChecked
+                  ? "hover:bg-blue-400"
+                  : "cursor-not-allowed opacity-50"
+              }`}
               onClick={handleSubmit}
               disabled={!isChecked}
             >
