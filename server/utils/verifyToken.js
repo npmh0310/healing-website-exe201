@@ -23,7 +23,6 @@ const verifyUser = (req, res, next) => {
   verifyToken(req, res.next, () => {
     // console.log(req.user.role)
     if (
-      req.user.id === req.params.id ||
       req.user.role === "Admin" ||
       req.user.role === "User"
     ) {

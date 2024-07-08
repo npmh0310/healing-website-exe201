@@ -32,7 +32,7 @@ const register = async (req, res) => {
       username: req.body.username,
       email: req.body.email,
       password: hash,
-      photo: req.body.photo,
+      // photo: req.body.photo,
     });
     await newUser.save();
     res.status(200).json({
@@ -75,12 +75,13 @@ const login = async (req, res) => {
     const { password, role, username, ...rest } = user._doc; // send to client (trwf password vs role)
 
     const token = jwt.sign(
-      { id: user.id, role: user.role },
+      { id: user.id, role: user.role, email: email },
       process.env.JWT_SECRET_KEY,
       { expiresIn: "15d" }
     );
 
     // set token in cookies
+    console.log("duoc khong ?")
     res
       .cookie("accessToken", token, {
         expires: token.expiresIn,

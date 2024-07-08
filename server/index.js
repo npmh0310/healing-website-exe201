@@ -10,7 +10,10 @@ var speakerRoute = require("./routes/speaker");
 var passport = require("passport");
 const session = require("express-session");
 const User = require("./models/User");
+const orderRouter = require("./controllers/order");
+const PayOS = require("@payos/node");
 var GoogleStrategy = require("passport-google-oauth20").Strategy;
+
 // const passportSetup = require("./passport")
 // const ggRouter = require("./routes/googleAuth")
 dotenv.config();
@@ -102,6 +105,8 @@ app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/workshops", workshopRoute);
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/speaker", speakerRoute);
+app.use("/api/v1/payment", orderRouter);
+
 
 app.get(
   "/auth/google",
@@ -115,6 +120,25 @@ app.get(
     successRedirect: process.env.CLIENT_URL,
   })
 );
+
+// app.post('/api/v1/create-payment-link', async (req, res) => {
+//   const YOUR_DOMAIN = 'http://localhost:3000';
+//   const body = {
+//     orderCode: Number(String(Date.now()).slice(-6)),
+//     amount: req.body.amount,
+//     description: 'Thanh toan don hang',
+//     returnUrl: `${YOUR_DOMAIN}/success.html`,
+//     cancelUrl: `${YOUR_DOMAIN}/cancel.html`
+//   };
+
+//   try {
+//     const paymentLinkResponse = await payos.createPaymentLink(body);
+//     res.redirect(paymentLinkResponse.checkoutUrl);
+//   } catch (error) {
+//     console.error(error);
+//     res.send('Something went error');
+//   }
+// });
 
 app.get("/login/success", async (req, res) => {
   if (req.user) {

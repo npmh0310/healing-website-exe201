@@ -8,20 +8,23 @@ const {
   getWorkShopBySearch,
 } = require("../controllers/workshopController");
 const { verifyUser, verifyAdmin } = require('../utils/verifyToken');
+const { guimail } = require("../controllers/sendMail");
 
 const router = express.Router();
 
 //create new tours
-router.post("/",verifyAdmin, createWorkShop);
+router.post("/", verifyAdmin, createWorkShop);
 // update ws
 router.put("/:id", verifyAdmin, updateWorkShop);
 // delete ws
-router.delete("/:id",verifyAdmin, deleteWorkShop);
+router.delete("/:id", verifyAdmin, deleteWorkShop);
 // getSingle ws
 router.get("/:id", getSingleWorkShop);
 // get ws by search
 router.get("/search/getWorkShopSearch", getWorkShopBySearch);
 // getAll ws
 router.get("/", getAllWorkShop);
+
+router.get("/testguimail/vl", verifyUser, guimail);
 
 module.exports = router;
