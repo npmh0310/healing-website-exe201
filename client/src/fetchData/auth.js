@@ -14,7 +14,7 @@ const getProfile = () => {
 }
 
 const onLogout = () => {
-    return axios.get("https://healing-website-exe201-npmh310s-projects.vercel.app/logout");
+    return axios.get("https://healing-website-exe201.onrender.com/logout");
 }
 
 export {
