@@ -4,16 +4,12 @@ const main = [
     path: "/",
     state: "home",
   },
-  {
-    display: "about",
-    path: "/aboutus",
-    state: "aboutus",
-  },
+
 
   {
     display: "contact",
     path: "/contact",
-    state: "contact",
+    state: "contact",   
   },
   {
     display: "blog",

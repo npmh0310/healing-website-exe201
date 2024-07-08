@@ -14,19 +14,23 @@ import img from "../assets/images/features.jpg";
 import Button from "./../../node_modules/@mui/material/Button/Button";
 import { Box, Modal } from "@mui/material";
 import ModalBuy from "../components/common/ServiceDetail/ModalBuy";
+import Skeleton from "@mui/material/Skeleton";
 
 const ServiceDetail = () => {
   const { id } = useParams(); // Get the id from the URL params
   const [serviceData, setServiceData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
-    // Fetch data using the id
     getWorkshopById(id)
       .then((response) => {
         setServiceData(response.data.data);
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
       })
       .catch((error) => console.error("Error fetching service data:", error));
   }, [id]);
@@ -43,15 +47,11 @@ const ServiceDetail = () => {
   }
 
   function getFormattedTime(dateString) {
-    // Tạo Date object từ chuỗi Date
     const date = new Date(dateString);
-
-    // Format time to "12:00"
     const formattedTime = date.toLocaleTimeString("en-US", {
       hour: "numeric",
       minute: "2-digit",
     });
-
     return formattedTime;
   }
 
@@ -63,9 +63,21 @@ const ServiceDetail = () => {
 
   return (
     <PageWrapper>
-      <div className="px-[129px] py-[74px]  bg-slate-100">
-        {/* Render the service detail data */}
-        {serviceData ? (
+      <div className="px-[129px] py-[74px] bg-slate-100">
+        {loading ? (
+          <div className="my-8">
+            <Skeleton variant="text" width="40%" height={60} />
+            <Skeleton variant="rectangular" width="100%" height={420} />
+            <Skeleton variant="text" width="60%" height={24} />
+            <Skeleton variant="text" width="80%" height={16} />
+            <Skeleton variant="text" width="70%" height={16} />
+            <Skeleton variant="text" width="60%" height={16} />
+            <Skeleton variant="text" width="50%" height={16} />
+            <Skeleton variant="text" width="40%" height={16} />
+            <Skeleton variant="text" width="30%" height={16} />
+            <Skeleton variant="text" width="20%" height={16} />
+          </div>
+        ) : (
           <div className="my-8">
             <h1 className="text-center my-10 text-5xl italic font-extrabold font-primary text-four">
               VIEW WORKSHOP DETAIL
@@ -227,8 +239,6 @@ const ServiceDetail = () => {
               </div>
             </div>
           </div>
-        ) : (
-          <p>Loading...</p>
         )}
       </div>
     </PageWrapper>
