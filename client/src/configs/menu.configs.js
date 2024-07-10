@@ -16,11 +16,6 @@ const main = [
     path: "/blog",
     state: "blog",
   },
-  {
-    display: "feadback",
-    path: "/feadback",
-    state: "feadback",
-  },
 ];
 const user = [];
 

@@ -36,7 +36,7 @@ const ModalBuy = ({ serviceData, handleClose }) => {
         <div className="flex gap-x-10">
           <div className="px-6">
             <h1 className="text-4xl font-bold mb-5 text-center text-four">
-              Buy ticket "{serviceData.name}""
+              Buy ticket "{serviceData.name}"
             </h1>
             <div className="mb-4">
               <label className="block text-gray-700 mb-2" htmlFor="buyerName">
@@ -102,7 +102,7 @@ const ModalBuy = ({ serviceData, handleClose }) => {
               )}
             </div>
 
-            <div className="mb-4 flex justify-center gap-4">
+            {/* <div className="mb-4 flex justify-center gap-4">
               <button
                 className={`py-2 px-4 rounded ${
                   paymentMethod === "Momo"
@@ -123,7 +123,7 @@ const ModalBuy = ({ serviceData, handleClose }) => {
               >
                 Pay with VNpay
               </button>
-            </div>
+            </div> */}
             <div className="flex justify-center">
               {paymentMethod === "Momo" && (
                 <div className="flex-col justify-center mb-4">
